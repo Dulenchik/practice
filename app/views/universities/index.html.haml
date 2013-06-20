@@ -1,0 +1,14 @@
+%h1 Universities
+= button_to "New", new_university_path, method: :get
+%table
+  %tr
+    %th Id
+    %th Name
+    %th Address
+    %th
+  - @universities.each do |university|
+    %tr
+      %td= link_to "##{ university.id }", edit_university_path(university)
+      %td= university.name
+      %td= university.address
+      %td= link_to "Destroy", university, :method => :delete, :data => { :confirm => 'Are you sure?' }

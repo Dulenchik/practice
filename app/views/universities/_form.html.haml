@@ -1,0 +1,9 @@
+= form_for @university do |f|
+  .field
+    = f.label :name
+    = f.text_field :name, size: 45
+  .field
+    = f.label :address
+    = f.text_field :address, size: 45
+  #action
+    = f.submit 'Save'
