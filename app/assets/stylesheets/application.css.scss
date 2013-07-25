@@ -12,27 +12,427 @@
  *= require_tree .
  */
 
-body {
+$background: #f5f5f5;
+$panel: #1e1e4d;
+$form_background: #e0e0e0;
+$ever: #c5c5c5;
+$odd: #e5e5e5;
+
+@mixin middle_inline_block {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@mixin button($color, $back_color) {
+  width: 80px;
+  padding: 5px 0;
+  color: $color;
+  background-color: $back_color;
+  border: 1px solid white;
+  border-radius: 10px;
+  font-size: 13px;  
+}
+
+@mixin field($width, $vertical_padding) {
+  width: $width;
+  color: $panel;
+  border-radius: 10px;
+  height: 30px;
+  outline: none;
+  float: right;
+  background-color: white;
+  padding: $vertical_padding 10px;
+  border: 1px solid $panel;
+  font-size: 13px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+}
+
+* html #wrapper {
   height: 100%;
+}
 
-  .wrapper {
-    min-height: 100%;
-    height: 100%;
-    position: relative;
+html, body {
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  min-width: 1270px;
+}
 
-    .content {
-      margin-bottom: -40px;
-      height: 100%;
-    }
+#wrapper {
+  position: relative;
+  min-height: 100%;
+  background-color: $background;
+  color: black;
 
-    footer {
-      height: 40px;
-      background-color: blue;
+  header {  
+    height: 50px;
+    color: white;
+    margin-bottom: 50px;
 
-      .description {
-        color: white;
+    #headline {
+      background-color: $panel;
+      border: {
+        bottom: 1px solid white;
+        bottom-left-radius: 10px;
+        bottom-right-radius: 10px;
+      }
+      padding: 10px;
+
+      h1 {
+        @include middle_inline_block;
+        font-size: 26px;
+      }
+
+      nav {
+        @include middle_inline_block;
+        font-size: 13px;
+        margin-left: 10px;
+
+        a {
+          padding: 5px;
+          text-decoration: none;
+          color: white;
+
+          &.current {
+            border: 1px solid white;
+            border-radius: 10px;
+          }
+        }
+      }
+
+      #session {
+        float: right;
+
+        .name {
+          @include middle_inline_block;
+          font-size: 13px;
+          margin: 0 10px;
+        }
+
+        #logout {
+          @include middle_inline_block;
+
+          .button {
+            @include button($panel, $form_background);
+          }
+        }
       }
     }
+
+    #caption {
+      padding: 5px;
+      height: 30px;
+      width: 200px;
+      text-align: center;
+      background-color: $panel;
+      margin: -1px 30px 0;
+      border: 1px solid white;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-top: none;
+      font-size: 18px;
+    }
+  }
+
+  #content {
+    padding: 0 10px;
+
+    #note {
+      width: 500px;
+      margin: 0 auto 10px;
+      background-color: $form_background;
+      color: $panel;
+      font-size: 15px;
+      padding: 10px;
+      border: 1px solid $panel;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #message {
+      font-weight: bold;
+      padding: 10px;
+      color: $panel;
+
+      a { color: $panel; }
+    }
+
+    fieldset {
+      border-radius: 10px;
+      border: 1px solid $panel;
+      color: $panel;
+      background-color: $form_background;
+      width: 550px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      padding: 10px;
+
+      #errors {
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: rgba(255, 0, 0, 0.2);
+        border: 1px solid red;
+        border-radius: 10px;
+
+        h3 {
+          font-size: 15px;
+        }
+
+        ul {
+          padding-left: 20px;
+          font-size: 12px;
+        }
+      }
+
+      .field {
+        height: 40px;
+        margin: 5px 0;
+
+        .label {
+          padding: 5px 0;
+          height: 30px;
+          float: left;          
+        }
+
+        .text_field {
+          @include field(400px, 0);
+        }
+
+        .text_area {
+          @include field(400px, 5px);
+          resize: none;
+        }
+
+        select {
+          @include field(422px, 5px);
+
+          optgroup {
+            text-decoration: none;
+            font-style: normal;
+
+            option { padding-left: 15px; }
+          }
+        }
+      }
+      #action { text-align: center; }
+    }
+
+    #filter {
+      float: right;
+      width: 350px;
+      background-color: $form_background;
+      border: 1px solid $panel;
+      border-radius: 10px;
+      color: $panel;
+      font-weight: bold;
+
+        .header {
+          width: 100%;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+          background-color: $panel;
+          color: white;
+          text-align: center;
+          padding: 10px 0;
+          font-size: 15px;
+        }
+
+        .field {
+          padding: 10px 10px 0;
+          height: 20px;
+
+          .label {
+            vertical-align: middle;
+            height: 20px;
+            float: left;
+            display: inline-block;
+            padding: 1px 0;
+          }
+
+          .label_left {
+            vertical-align: middle;
+            height: 20px;
+            float: left;
+            display: inline-block;
+            padding: 1px 0;
+            margin-right: 8px;
+          }
+
+          .label_right {
+            vertical-align: middle;
+            height: 20px;
+            float: left;
+            display: inline-block;
+            padding: 1px 0;
+            margin: 0 8px;
+          }
+
+          .text_field_mini {
+            @include field(90px, 0);
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            float: left;
+          }
+
+          .text_field_mini_right {
+            @include field(90px, 0);
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+          }
+
+          .text_field {
+            @include field(220px, 0);
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+          }
+        }
+
+        #action {
+          padding: 0 135px;
+          margin-bottom: 10px;
+        }
+      }
+
+    .table {
+      border-radius: 10px;
+      background-color: white;
+      border: 1px $panel solid;
+
+      table {
+        border-collapse: separate;
+        width: 100%;
+        font-size: 13px;
+        border-spacing: 0px;
+
+        tr {
+          border-bottom: 1px solid white;
+
+          th {
+            background-color: $panel;
+            padding: 5px;
+            color: white;
+
+            a {
+              color: white;
+              background-image: url('up_down.png');
+              background-repeat: no-repeat;
+              background-position: right 60%;
+              padding-right: 15px;
+              text-decoration: none;
+            }
+          }
+
+          td {
+            background-color: $ever;
+            padding: 5px;
+
+            a { color: $panel; }
+          }
+
+          &.odd { 
+            td { background-color: $odd; }
+          }
+
+          &:first-of-type {
+            th:first-of-type { border-top-left-radius: 10px; }
+            th:last-of-type { border-top-right-radius: 10px; }
+          }
+
+          &:last-of-type {
+            border-bottom:none;
+
+            th:first-of-type { border-bottom-left-radius: 10px; }
+            th:last-of-type { border-bottom-right-radius: 10px; }            
+            td:first-of-type { border-bottom-left-radius: 10px; }
+            td:last-of-type { border-bottom-right-radius: 10px; }
+          }
+        }
+      }
+    }
+
+    .pagination {
+      margin: 10px;
+      font-size: 13px;
+
+      .page {
+        margin: 0 2px;
+      }
+
+      .current {
+        border: 1px solid $panel;
+        border-radius: 5px;
+        background-color: $form_background;
+        color: $panel;
+        padding: 2px 3px 2px 5px;
+        text-decoration: none;
+        text-align: center;
+      }
+
+      a {
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 2px 5px;
+        background-color: $panel;
+        color: white;
+        text-decoration: none;
+      }
+    }
+
+    .button {
+      margin-top: 10px;
+      @include button(white, $panel);      
+    }
+  }
+
+  #buffer {
+    margin-top: 100px;
+    min-height: 100px;
+    height: 40%;
   }
 }
 
+footer {
+  position: relative;
+  margin-top: -82px;
+  height: 81px;
+  background-color: $panel;
+  color: white;
+  border-top: 1px solid white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+
+  #copyright {
+    float: right;
+    margin: 13px 10px;
+
+    #logo {      
+      width: 50px;
+      height: 43px;
+      border-radius: 10px;
+      border: 1px solid white;
+      padding: 5px;
+      @include middle_inline_block;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    #description {
+      font-size: 13px;
+      @include middle_inline_block;
+      margin: 0 10px;
+    }
+  }
+}

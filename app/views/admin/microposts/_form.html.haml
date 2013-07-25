@@ -1,0 +1,11 @@
+%fieldset
+  = form_for [ :admin, @micropost ] do |f|
+    =errors_for(@micropost)
+    .field
+      .label= f.label :content
+      = f.text_area :content, class: 'text_area'
+    .field
+      .label= f.label :user_id
+      = f.grouped_collection_select :user_id, Group.all, :users, :name, :id, :name
+    #action
+      = f.submit 'Save', class: 'button'

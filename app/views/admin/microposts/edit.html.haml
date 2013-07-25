@@ -1,0 +1,33 @@
+= render 'form'
+
+- unless @ratings.empty?
+  .ratings_mini
+    .table
+      %table
+        %tr
+          %th Id
+          %th Rating
+          %th User
+
+        - @ratings.each do |rating|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ rating.id }", edit_admin_rating_path(rating)
+            %td= rating.value
+            %td= rating.user.name
+    = paginate @ratings
+
+- unless @comments.empty?
+  .comments_mini
+    .table
+      %table
+        %tr
+          %th Id
+          %th Text
+          %th User
+
+        - @comments.each do |comment|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ comment.id }", edit_admin_comment_path(comment)
+            %td= comment.text
+            %td= comment.user.name
+    = paginate @comments

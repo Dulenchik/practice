@@ -1,0 +1,32 @@
+#users
+  .table
+    %table
+      %tr
+        %th Id
+        %th Name
+        %th E-mail
+        %th Created at
+        %th Type
+      - @users.each do |user|
+        %tr{ :class => cycle('odd', 'ever') }
+          %td= link_to "##{ user.id }", edit_admin_user_path(user)
+          %td= user.name
+          %td= user.email
+          %td= user.created_at
+          %td= user.user_type.name
+
+#microposts
+  .table
+    %table
+      %tr
+        %th Id
+        %th Content
+        %th User
+        %th Created at
+      - @microposts.each do |micropost|
+        %tr{ :class => cycle('odd', 'ever') }
+          %td= link_to "##{ micropost.id }", edit_admin_micropost_path(micropost)
+          %td= micropost.content
+          %td= micropost.user.name
+          %td= micropost.created_at
+#spacer

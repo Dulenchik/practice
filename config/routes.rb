@@ -1,5 +1,15 @@
 Practice::Application.routes.draw do
-  resources :universities, only: [:index, :new, :create, :edit, :update, :destroy]
+  namespace :admin do
+    resources :universities, :faculties, :chairs, :groups, :user_types, :users, :microposts, :ratings, :comments,  except: [:show]
+    resource :sessions, only: [:new, :create, :destroy]
+
+    get '/login', to: "sessions#new"
+    delete '/logout', to: "sessions#destroy"
+
+    get "dashboard", to: "dashboard#index"
+
+    root 'dashboard#index'
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -10,7 +20,7 @@ Practice::Application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
+  # Example of named ronamespaceute that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):

@@ -1,0 +1,25 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.users {
+  width: 800px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+}
+
+.microposts_mini {
+  width: 450px;
+  margin-bottom: 20px;
+}
+
+.comments_mini {
+  width: 500px;
+  margin-bottom: 20px;
+}
+
+.ratings_mini {
+  width: 500px;
+  margin-bottom: 20px;
+}

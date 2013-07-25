@@ -5,9 +5,27 @@
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true 
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
+    = favicon_link_tag "favicon.ico"
   %body
-    .wrapper      
-      %section.content= yield
+    #wrapper
+      %header
+        #headline
+          %h1 Admin
+          = render "/layouts/links"
+          #session
+            .name= current_user.email
+            #logout= button_to "Logout", admin_logout_path, method: :delete,  class: "button"
+        %h2#caption= @caption
 
-      %footer 
-        .description Our practice
+      %section#content
+        - if flash[:note]
+          #note= flash[:note]
+        = yield
+      #buffer
+
+    %footer
+      #copyright
+        #logo= image_tag "logo.png"
+        #description
+          &#169 National Mining University
+          %br 2013

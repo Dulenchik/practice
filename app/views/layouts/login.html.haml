@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title Practice
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true 
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    = favicon_link_tag "favicon.ico"
+  %body
+    #wrapper
+      %section#content
+        - if flash[:note]
+          #note= flash[:note]
+        = yield
+      #buffer
+
+    %footer
+      #copyright
+        #logo= image_tag "logo.png"
+        #description
+          &#169 National Mining University
+          %br 2013

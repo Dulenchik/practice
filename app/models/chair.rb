@@ -3,6 +3,8 @@ class Chair < ActiveRecord::Base
   has_many :groups
   has_and_belongs_to_many :users
 
-  validates :name, :length => { :maximum => 45 }
-  validates :faculty_id, :presence => true
+  validates :name, :presence => true, 
+                   :length => { :maximum => 45 }
+  validates :faculty_id, :presence => true,
+                         :numericality => { :only_integer => true }
 end

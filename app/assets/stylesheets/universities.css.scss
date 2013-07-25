@@ -2,10 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-th {
-  text-align: left;
+.universities {
+  width: 850px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
 }
 
-td {
-  padding: 0px 7px;
+.faculties_mini {
+  width: 450px;
 }

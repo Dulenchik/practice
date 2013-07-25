@@ -1,13 +1,16 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0'
 
 gem 'mysql2'
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'ransack', git: 'git://github.com/ernie/ransack.git' , branch: 'rails-4'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
+gem 'kaminari'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

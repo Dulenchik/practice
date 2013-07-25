@@ -1,0 +1,29 @@
+.chairs
+  - unless @chairs.empty?
+    .table
+      %table
+        %tr
+          %th= link_to "Id", admin_chairs_path(order: order_by("id")) 
+          %th= link_to "Name", admin_chairs_path(order: order_by("name")) 
+          %th Faculty
+        - @chairs.each do |chair|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ chair.id }", edit_admin_chair_path(chair)
+            %td= chair.name
+            %td= chair.faculty.name
+    = paginate @chairs
+  - else
+    = unsuccesfully_search("Chairs", admin_chairs_path)
+  = button_to "New", new_admin_chair_path, method: :get, class: 'button'
+
+- unless @chairs.empty?
+  #filter
+    .header Filter
+    = search_form_for [:admin, @search] do |f|
+      .field
+        = f.label :name_cont, "Name", class: 'label'
+        = f.text_field :name_cont, class: 'text_field'
+      .field
+        = f.label :faculty_name_cont, "Faculty", class: 'label'
+        = f.text_field :faculty_name_cont, class: 'text_field'
+      #action= f.submit "Search", class: "button"

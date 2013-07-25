@@ -1,0 +1,21 @@
+= render "form"
+
+- unless @users.empty?
+  .users_mini
+    .table
+      %table
+        %tr
+          %th Id
+          %th Name
+          %th E-mail
+          %th Created at
+          %th Updated at
+
+        - @users.each do |user|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ user.id }", edit_admin_user_path(user)
+            %td= user.name
+            %td= user.email
+            %td= user.created_at
+            %td= user.updated_at
+    = paginate @users

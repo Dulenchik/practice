@@ -1,0 +1,15 @@
+= render "form"
+
+- unless @faculties.empty?
+  .faculties_mini
+    .table
+      %table
+        %tr
+          %th Id
+          %th Faculty
+
+        - @faculties.each do |faculty|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ faculty.id }", edit_admin_faculty_path(faculty)
+            %td= faculty.name
+    = paginate @faculties

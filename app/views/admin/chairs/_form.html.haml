@@ -1,0 +1,11 @@
+%fieldset
+  = form_for [ :admin, @chair ] do |f|
+    =errors_for(@chair)
+    .field
+      .label= f.label :name
+      = f.text_field :name, class: 'text_field'
+    .field
+      .label= f.label :faculty_id
+      = f.grouped_collection_select :faculty_id, University.all, :faculties, :name, :id, :name
+    #action
+      = f.submit 'Save', class: 'button'

@@ -1,0 +1,11 @@
+%fieldset
+  = form_for [ :admin, @university ] do |f|
+    =errors_for(@university)
+    .field
+      .label= f.label :name
+      = f.text_field :name, class: 'text_field'
+    .field
+      .label= f.label :address
+      = f.text_field :address, class: 'text_field'
+    #action
+      = f.submit 'Save', class: 'button'

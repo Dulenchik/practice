@@ -1,0 +1,23 @@
+%fieldset
+  = form_for [ :admin, @user ] do |f|
+    =errors_for(@user)
+    .field
+      .label= f.label :name
+      = f.text_field :name, class: 'text_field'
+    .field
+      .label= f.label :email
+      = f.text_field :email, class: 'text_field'
+    .field
+      .label= f.label :password, 'Password'
+      = f.text_field :password, class: 'text_field'
+    .field
+      .label= f.label :password_confirmation, 'Confirmation'
+      = f.text_field :password_confirmation, class: 'text_field'
+    .field
+      .label= f.label :user_type_id
+      = f.collection_select :user_type_id, UserType.all, :id, :name
+    .field
+      .label= f.label :group_id
+      = f.grouped_collection_select :group_id, Chair.all, :groups, :name, :id, :name
+    #action
+      = f.submit 'Save', class: 'button'

@@ -1,0 +1,30 @@
+.universities
+  - unless @universities.empty?
+    .table
+      %table
+        %tr
+          %th= link_to "Id", admin_universities_path(order: order_by("id")) 
+          %th= link_to "Name", admin_universities_path(order: order_by("name"))
+          %th Address
+        - @universities.each do |university|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ university.id }", edit_admin_university_path(university)
+            %td= university.name
+            %td= university.address
+    = paginate @universities
+  - else
+    = unsuccesfully_search("Universities", admin_universities_path)
+  = button_to "New", new_admin_university_path, method: :get, class: 'button'
+
+- unless @universities.empty?
+  #filter
+    .header Filter
+    = search_form_for [:admin, @search] do |f|
+      .field
+        = f.label :name_cont, "Name", class: 'label'
+        = f.text_field :name_cont, class: 'text_field'
+      .field
+        = f.label :address_cont, "Address", class: 'label'
+        = f.text_field :address_cont, class: 'text_field'
+      #action= f.submit "Search", class: "button"
+

@@ -1,0 +1,14 @@
+%fieldset
+  = form_for [ :admin, @rating ] do |f|
+    =errors_for(@rating)
+    .field
+      .label= f.label :value
+      = f.text_field :value, class: 'text_field'
+    .field
+      .label= f.label :user_id
+      = f.grouped_collection_select :user_id, Group.all, :users, :name, :id, :name
+    .field
+      .label= f.label :micropost_id
+      = f.grouped_collection_select :micropost_id, User.all, :microposts, :name, :id, :content
+    #action
+      = f.submit 'Save', class: 'button'

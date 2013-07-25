@@ -1,0 +1,15 @@
+= render 'form'
+
+- unless @chairs.empty?
+  .chairs_mini
+    .table
+      %table
+        %tr
+          %th Id
+          %th Chair
+
+        - @chairs.each do |chair|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ chair.id }", edit_admin_chair_path(chair)
+            %td= chair.name
+    = paginate @chairs

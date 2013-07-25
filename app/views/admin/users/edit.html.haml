@@ -1,0 +1,47 @@
+= render 'form'
+
+- unless @microposts.empty?
+  .microposts_mini
+    .table
+      %table
+        %tr
+          %th Id
+          %th Content
+
+        - @microposts.each do |micropost|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ micropost.id }", edit_admin_micropost_path(micropost)
+            %td= micropost.content
+    = paginate @microposts, param_name: "micropost_page"
+
+- unless @comments.empty?
+  .comments_mini
+    .table
+      %table
+        %tr
+          %th Id
+          %th Text
+          %th Micropost
+
+        - @comments.each do |comment|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ comment.id }", edit_admin_comment_path(comment)
+            %td= comment.text
+            %td= comment.micropost.content
+    = paginate @comments, param_name: "comment_page"
+
+- unless @ratings.empty?
+  .ratings_mini
+    .table
+      %table
+        %tr
+          %th Id
+          %th Value
+          %th Micropost
+
+        - @ratings.each do |rating|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ rating.id }", edit_admin_rating_path(rating)
+            %td= rating.value
+            %td= rating.micropost.content
+    = paginate @ratings, param_name: "rating_page"

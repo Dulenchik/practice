@@ -1,0 +1,11 @@
+#spacer
+  %fieldset#login
+    = form_for(:session, url: admin_sessions_path) do |f|
+      .field
+        .label= f.label :email
+        = f.text_field :email, class: 'text_field'
+      .field
+        .label= f.label :password, "Password"
+        = f.password_field :password, class: 'text_field'
+      #action
+        = f.submit 'Login', class: 'button'

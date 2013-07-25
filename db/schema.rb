@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130620073959) do
+ActiveRecord::Schema.define(version: 20130716102510) do
 
   create_table "chairs", force: true do |t|
     t.string  "name"
@@ -71,13 +71,13 @@ ActiveRecord::Schema.define(version: 20130620073959) do
     t.string "address"
   end
 
-  create_table "user_session_timetables", force: true do |t|
+  create_table "user_session_timetable", force: true do |t|
     t.datetime "start"
     t.datetime "end"
     t.integer  "user_id"
   end
 
-  add_index "user_session_timetables", ["user_id"], name: "index_user_session_timetables_on_user_id", using: :btree
+  add_index "user_session_timetable", ["user_id"], name: "index_user_session_timetable_on_user_id", using: :btree
 
   create_table "user_types", force: true do |t|
     t.string "name"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20130620073959) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "encrypted_password"
+    t.string   "password_digest"
     t.integer  "group_id"
     t.integer  "user_type_id"
     t.datetime "created_at"

@@ -1,0 +1,39 @@
+= render 'form'
+
+- unless @users.empty?
+  .users_mini
+    .table
+      %table
+        %tr
+          %th Id
+          %th Name
+          %th E-mail
+          %th Created at
+          %th Updated at
+          %th Type
+          %th Group
+
+        - @users.each do |user|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ user.id }", edit_admin_group_path(user)
+            %td= user.name
+            %td= user.email
+            %td= user.created_at
+            %td= user.updated_at
+            %td= user.user_type.name
+            %td= user.group.name
+    = paginate @users
+
+- unless @groups.empty?
+  .groups_mini
+    .table
+      %table
+        %tr
+          %th Id
+          %th Group
+
+        - @groups.each do |group|
+          %tr{ :class => cycle('odd', 'ever') }
+            %td= link_to "##{ group.id }", edit_admin_group_path(group)
+            %td= group.name
+    = paginate @groups
