@@ -15,8 +15,6 @@ class User < ActiveRecord::Base
                     :length => { :maximum => 45 }, 
                     :uniqueness => true
   validates :password, :confirmation => true, on: :create
-  validates :group_id, :presence => true, 
-                       :numericality => { :only_integer => true }
   validates :user_type_id, :presence => true, 
                            :numericality => { :only_integer => true }
 end

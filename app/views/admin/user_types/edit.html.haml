@@ -19,5 +19,5 @@
             %td= user.email
             %td= user.created_at
             %td= user.updated_at
-            %td= user.group.name
+            %td= user.group.name if user.group
     = paginate @users

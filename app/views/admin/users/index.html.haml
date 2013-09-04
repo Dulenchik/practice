@@ -18,7 +18,7 @@
             %td= user.created_at.strftime("%Y-%m-%d")
             %td= user.updated_at.strftime("%Y-%m-%d")
             %td= user.user_type.name
-            %td= user.group.name
+            %td= user.group.name if user.group
     = paginate @users
   - else
     = unsuccesfully_search("Users", admin_users_path)
