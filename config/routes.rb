@@ -1,6 +1,6 @@
 Practice::Application.routes.draw do
   namespace :admin do
-    resources :universities, :faculties, :chairs, :groups, :user_types, :users, :microposts, :ratings, :comments,  except: [:show]
+    resources :universities, :faculties, :chairs, :groups, :user_types, :users, :microposts, :ratings, :comments,  except: [:show, :destroy]
     resource :sessions, only: [:new, :create, :destroy]
 
     get '/login', to: "sessions#new"
